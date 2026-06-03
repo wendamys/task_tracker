@@ -1,0 +1,20 @@
+"""
+Database dependencies
+"""
+
+from collections.abc import Generator
+from sqlalchemy.orm import Session
+from app.database.db import SessionLocal
+
+
+def get_db() -> Generator[Session, None, None]:
+    """
+    Create DB session per request
+    """
+
+    db = SessionLocal()
+
+    try:
+        yield db
+    finally:
+        db.close()

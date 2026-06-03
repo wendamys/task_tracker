@@ -9,7 +9,7 @@ Contains:
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-DATABASE_URL = "sqlite:///:memory:"
+DATABASE_URL = "sqlite:///task_tracker.db"
 
 
 # Engine manages connections to the database
@@ -20,7 +20,7 @@ engine = create_engine(
 
 # Factory that creates DB sessions
 SessionLocal = sessionmaker(
-    bing=engine,
+    bind=engine,
     autoflush=False,
     autocommit=False,
 )
