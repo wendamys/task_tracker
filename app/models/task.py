@@ -1,13 +1,14 @@
 """
 Task ORM model
 """
+
 import datetime
 
-from sqlalchemy import String, DateTime, ForeignKey
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import String, DateTime, ForeignKey, Enum
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database.base import Base
-
+from app.enums.task_status import TaskStatus
 
 
 class Task(Base):
@@ -32,10 +33,10 @@ class Task(Base):
         nullable=False,
     )
 
-    status: Mapped[str] = mapped_column(
-        String(11),
+    status: Mapped[TaskStatus] = mapped_column(
+        Enum(TaskStatus),
+        default=TaskStatus.NEW,
         nullable=False,
-        default="new",
     )
 
     requester: Mapped[str] = mapped_column(
@@ -46,6 +47,10 @@ class Task(Base):
     assignee_id: Mapped[int | None] = mapped_column(
         ForeignKey("users.id"),
         nullable=True,
+    )
+
+    assignee: Mapped["User | None"] = relationship(
+        back_populates="tasks",
     )
 
     created_at: Mapped[datetime.datetime] = mapped_column(
@@ -60,9 +65,5 @@ class Task(Base):
         onupdate=datetime.datetime.utcnow,
         nullable=False,
     )
-
-
-
-
 
 

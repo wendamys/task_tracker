@@ -9,7 +9,7 @@ Contains:
 
 from pydantic import BaseModel, ConfigDict, Field
 from datetime import datetime
-from enum import Enum
+from app.enums.task_status import TaskStatus
 
 
 class TaskCreate(BaseModel):
@@ -34,50 +34,29 @@ class TaskCreate(BaseModel):
 
     assignee_id: int | None = None
 
-
 class TaskUpdate(BaseModel):
     """
     Schema for update task
     All fields are optional
     """
 
-    title: str | None = Field(
-        default=None,
-        min_length=1,
-        max_length=255,
-    )
+    status: TaskStatus | None = None
+    assignee_id: int | None = None
 
-    description: str | None = Field(
-        default=None,
-        min_length=1,
-        max_length=1000,
-    )
-
-    status: str | None = Field(
-        default=None,
-        max_length=50,
-    )
 
 class TaskResponse(BaseModel):
     """
     Schema returned to clients
     """
 
-    model_config = ConfigDict(
-        from_attributes=True,
-    )
-
     id: int
     title: str
     description: str
-    status: str
+    status: TaskStatus
     requester: str
-    assignee_id: int | None
+    assignee_name: str | None = None
     created_at: datetime
     updated_at: datetime
 
-class TaskStatus(str, Enum):
-    NEW = "new"
-    IN_PROGRESS = "in_progress"
-    DONE = "done"
-    CANCELLED = "cancelled"
+
+
