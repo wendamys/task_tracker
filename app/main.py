@@ -4,7 +4,7 @@ Application entry point
 Creates FastAPI application and registers routers
 """
 
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
@@ -98,6 +98,33 @@ def get_tasks(
     tasks = db.scalars(query).all()
 
     return tasks
+
+@app.get(
+    "/tasks/{task_id}",
+    response_model=TaskResponse,
+)
+def get_task(
+        task_id: int,
+        db: Session = Depends(get_db),
+):
+    """
+    Get task by ID
+    """
+
+    query = select(Task).where(
+        Task.id == task_id
+    )
+
+    task = db.scalar(query)
+
+    if task is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Task not found",
+        )
+
+    return task
+
 
 
 
