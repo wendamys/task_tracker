@@ -7,9 +7,9 @@ Contains:
 - Response schema
 """
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, Field
 from datetime import datetime
-from app.enums.task_status import TaskStatus
+from backend.app.enums.task_status import TaskStatus
 
 
 class TaskCreate(BaseModel):
@@ -57,6 +57,10 @@ class TaskResponse(BaseModel):
     assignee_name: str | None = None
     created_at: datetime
     updated_at: datetime
+
+class DeleteResponse(BaseModel):
+    id: int
+    message: str
 
 
 

@@ -7,9 +7,9 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 
-from app.schemas.user import UserResponse
-from app.models.user import User
-from app.database.dependencies import get_db
+from backend.app.schemas.user import UserResponse
+from backend.app.models.user import User
+from backend.app.database.dependencies import get_db
 
 
 router = APIRouter(

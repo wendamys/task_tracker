@@ -4,28 +4,19 @@ Application entry point
 Creates FastAPI application and registers routers
 """
 
-from fastapi import FastAPI, Depends, HTTPException
-from sqlalchemy import select
+from fastapi import FastAPI
 from sqlalchemy.orm import Session
 
-from app.database.dependencies import get_db
-from app.database.db import engine
-from app.database.base import Base
-
-from app.schemas.task import TaskCreate, TaskResponse, TaskUpdate
-from app.schemas.user import UserResponse
-
-from app.services.task_mapper import task_to_response
-
+from backend.app.database.db import engine
+from backend.app.database.base import Base
 
 # IMPORTANT:
 # Import models before create_all()
 # so SQLAlchemy knows about them
-from app.models.task import Task
-from app.models.user import User
+from backend.app.models.user import User
 
-from app.routers.task_router import router as task_router
-from app.routers.user_router import router as user_router
+from backend.app.routers.task_router import router as task_router
+from backend.app.routers.user_router import router as user_router
 
 
 

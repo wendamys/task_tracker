@@ -1,5 +1,5 @@
-from app.models.task import Task
-from app.schemas.task import TaskResponse
+from backend.app.models.task import Task
+from backend.app.schemas.task import TaskResponse
 
 def task_to_response(
         task: Task,

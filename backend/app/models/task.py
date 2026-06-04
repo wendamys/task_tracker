@@ -7,8 +7,8 @@ import datetime
 from sqlalchemy import String, DateTime, ForeignKey, Enum
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from app.database.base import Base
-from app.enums.task_status import TaskStatus
+from backend.app.database.base import Base
+from backend.app.enums.task_status import TaskStatus
 
 
 class Task(Base):
