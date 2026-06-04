@@ -284,8 +284,14 @@ cd task_tracker
 
 ## 2. Создание виртуального окружения
 
+Если это линукс
 ```bash
 python -m venv .venv
+```
+Или
+
+```bash
+py -m venv .venv
 ```
 
 ### Windows
@@ -335,16 +341,12 @@ john@yandex.ru
 
 # Запуск Backend
 
-Перейти в каталог backend:
-
-```bash
-cd backend
-```
+В основном каталоге task_tracker:
 
 Запустить сервер:
 
 ```bash
-uvicorn app.main:app --reload
+uvicorn backend.app.main:app --reload
 ```
 
 После запуска API будет доступно по адресу:
