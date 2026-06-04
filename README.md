@@ -309,7 +309,7 @@ source .venv/bin/activate
 ## 3. Установка зависимостей
 
 ```bash
-pip install -r backend/requirements.txt
+pip install -r requirements.txt
 ```
 
 ---
