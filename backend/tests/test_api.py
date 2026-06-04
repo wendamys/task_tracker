@@ -21,7 +21,7 @@ def test_create_task_success(client, test_user):
         "assignee_id": test_user.id
     }
     response = client.post("/tasks", json=payload)
-    assert response.status_code == 200  # Или 201, зависит от вашего бэкенда
+    assert response.status_code == 200 
     data = response.json()
     assert data["title"] == "Написать тесты"
     assert data["status"] == "new"
