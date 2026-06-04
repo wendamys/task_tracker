@@ -440,13 +440,13 @@ cd backend
 Запуск всех тестов с подробным выводом:
 
 ```bash
-pytest tests/ -v
+pytest backend/tests/ -v
 ```
 
 Запуск с измерением покрытия кода:
 
 ```bash
-pytest tests/ -v --cov=app --cov-report=term-missing
+pytest backend/tests/ -v --cov=app --cov-report=term-missing
 ```
 
 ---
@@ -572,7 +572,7 @@ ORM-модели SQLAlchemy 2.0 с современным синтаксисом
 # ⏱️ Затраченное время
 
 * Проектирование и разработка Backend: 11 часов
-* Разработка Frontend (модульный Vanilla JS + Bootstrap): ~3 часов
-* Написание интеграционных тестов: 30 минут (AI по OPENAPI)
-* Написание документации: ~1 час
-* **Итого**: 15.5 часов
+* Разработка Frontend (модульный Vanilla JS + Bootstrap): 3 часа
+* Написание интеграционных тестов: 1 час
+* Написание документации: 1 час
+* **Итого**: 16 часов
