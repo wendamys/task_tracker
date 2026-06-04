@@ -111,7 +111,7 @@ def test_delete_task(client):
     task_id = create_resp.json()["id"]
 
     response = client.delete(f"/tasks/{task_id}")
-    assert response.status_code == 200  # Или 204, зависит от реализации
+    assert response.status_code == 200
 
     # Проверяем, что задача действительно удалена
     get_resp = client.get(f"/tasks/{task_id}")
