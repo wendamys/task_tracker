@@ -288,8 +288,8 @@ cd task_tracker
 ```bash
 python -m venv .venv
 ```
-Или
 
+Если это Windows
 ```bash
 py -m venv .venv
 ```
