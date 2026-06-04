@@ -440,13 +440,13 @@ cd backend
 Запуск всех тестов с подробным выводом:
 
 ```bash
-pytest backend/tests/ -v
+pytest tests/ -v
 ```
 
 Запуск с измерением покрытия кода:
 
 ```bash
-pytest backend/tests/ -v --cov=app --cov-report=term-missing
+pytest tests/ -v --cov=app --cov-report=term-missing
 ```
 
 ---
