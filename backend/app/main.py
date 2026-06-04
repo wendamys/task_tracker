@@ -18,12 +18,22 @@ from backend.app.models.user import User
 from backend.app.routers.task_router import router as task_router
 from backend.app.routers.user_router import router as user_router
 
+from fastapi.middleware.cors import CORSMiddleware
+
 
 
 app = FastAPI(
     title="Task Tracker",
     description="Simple task management system",
     version="1.0.0",
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 app.include_router(task_router)

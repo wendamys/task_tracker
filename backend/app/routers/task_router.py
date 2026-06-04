@@ -17,11 +17,12 @@ from backend.app.schemas.task import (TaskCreate,
                                       )
 
 from backend.app.services.task_mapper import task_to_response
-from backend.app.services.task_service import (get_task_or_404,
-                                               create_task as create_task_service,
-                                               update_task as update_task_service,
-                                               delete_task as delete_task_service,
-                                               )
+from backend.app.services.task_service import (
+                                                get_task_or_404,
+                                                create_task as create_task_service,
+                                                update_task as update_task_service,
+                                                delete_task as delete_task_service,
+                                                )
 
 
 router = APIRouter(
@@ -30,13 +31,14 @@ router = APIRouter(
 )
 
 
-@router.post("")
+@router.post("",
+             response_model=TaskResponse)
 def create_task(
     task_data: TaskCreate,
     db: Session = Depends(get_db),
 ):
     """
-    Create new task
+    Create new taska
     """
 
     task = create_task_service(
@@ -44,10 +46,7 @@ def create_task(
         db
     )
 
-    return {
-        "id": task.id,
-        "message": "Task created",
-    }
+    return task_to_response(task)
 
 
 @router.get(
@@ -78,11 +77,11 @@ def get_tasks(
 
 
 @router.get(
-    "/{task_id}",
+    "/{id}",
     response_model=TaskResponse,
 )
 def get_task(
-        task_id: int,
+        id: int,
         db: Session = Depends(get_db),
 ):
     """
@@ -90,7 +89,7 @@ def get_task(
     """
 
     task = get_task_or_404(
-        task_id,
+        id,
         db,
     )
 
@@ -98,11 +97,11 @@ def get_task(
 
 
 @router.put(
-    "/{task_id}",
+    "/{id}",
     response_model=TaskResponse,
 )
 def update_task(
-        task_id: int,
+        id: int,
         task_data: TaskUpdate,
         db: Session = Depends(get_db)
 ):
@@ -111,7 +110,7 @@ def update_task(
     """
 
     task = update_task_service(
-        task_id,
+        id,
         task_data,
         db,
     )
@@ -120,10 +119,10 @@ def update_task(
 
 
 @router.delete(
-    "/{task_id}",
+    "/{id}",
     response_model=DeleteResponse)
 def delete_task(
-        task_id: int,
+        id: int,
         db: Session = Depends(get_db)
 ):
     """
@@ -131,11 +130,11 @@ def delete_task(
     """
 
     delete_task_service(
-        task_id,
+        id,
         db,
     )
 
     return {
+        "id": id,
         "message": "Task deleted",
-        "id": task_id,
     }

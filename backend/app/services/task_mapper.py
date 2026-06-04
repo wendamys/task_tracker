@@ -15,6 +15,7 @@ def task_to_response(
         description=task.description,
         status=task.status,
         requester=task.requester,
+        assignee_id=task.assignee_id,
         assignee_name=(
             task.assignee.name
             if task.assignee

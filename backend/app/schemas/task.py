@@ -54,7 +54,10 @@ class TaskResponse(BaseModel):
     description: str
     status: TaskStatus
     requester: str
+
+    assignee_id: int | None = None
     assignee_name: str | None = None
+
     created_at: datetime
     updated_at: datetime
 
